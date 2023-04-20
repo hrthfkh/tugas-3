@@ -561,9 +561,9 @@ class MessageViewFragment :
         val originalmessage = Html.fromHtml(originalMessage).toString()
         var newmessage = ""
 
-        val key = "t6w9z\$C&F)H@McQf"
+        val key = "abcjakafl"
 
-        val url = "https://0079-111-94-208-173.ngrok-free.app/decrypt"
+        val url = "https://f156-111-94-208-173.ngrok-free.app/decrypt"
         val decrypt = Decrypt(key, originalmessage)
         val gson = Gson()
 

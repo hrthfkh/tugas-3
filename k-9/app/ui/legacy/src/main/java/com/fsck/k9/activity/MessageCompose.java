@@ -763,7 +763,7 @@ public class MessageCompose extends K9Activity implements OnClickListener,
         if (this.encryptionFlag && !encryptionKey.isBlank() && !encryptionKey.isEmpty()) {
             OkHttpClient okHttpClient = new OkHttpClient();
 
-            String url = "https://0079-111-94-208-173.ngrok-free.app/encrypt";
+            String url = "https://f156-111-94-208-173.ngrok-free.app/encrypt";
             Encrypt encrypt = new Encrypt(encryptionKey, msg);
             Gson gson = new Gson();
 
@@ -1298,12 +1298,12 @@ public class MessageCompose extends K9Activity implements OnClickListener,
             case DIALOG_ENCRYPTION: {
                 Builder d = new Builder(this).setTitle("Encrypt");
                 if (this.encryptionFlag) {
-                    return d.setMessage("Enter key")
-                        .setPositiveButton("Turn Off",
+                    return d.setMessage("Message will be encrypted")
+                        .setPositiveButton("Un-encrypt",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     changeEncryptionFlag(false);
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent plain",
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will not be encrypted",
                                         Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -1314,19 +1314,19 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                     input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     input.setHint("Key");
                     d.setView(input);
-                    return d.setMessage("Message will be sent plain")
-                        .setPositiveButton("Enter",
+                    return d.setMessage("Message will not be encrypted")
+                        .setPositiveButton("Encrypt",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     String key = input.getText().toString().trim();
                                     if (key.isEmpty() || key.isBlank() || key.length() < 4) {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Invalid key",
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Invalid encryption key",
                                             Toast.LENGTH_LONG);
                                         toast.show();
                                         return;
                                     }
                                     changeEncryptionFlag(true, key);
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent encrypted",
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be encrypted",
                                         Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -1334,13 +1334,13 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                 }
             }
             case DIALOG_DIGITAL_SIGN: {
-                Builder d = new Builder(this).setTitle("Digital Sign");
+                Builder d = new Builder(this).setTitle("Digital Signature");
                 if (this.digitalSignFlag) {
-                    return d.setMessage("Digital Sign")
-                        .setNegativeButton("Turn Off", (dialogInterface, which) -> {
+                    return d.setMessage("Digital Sign?")
+                        .setNegativeButton("No", (dialogInterface, which) -> {
 
                         })
-                        .setPositiveButton("Turn On",
+                        .setPositiveButton("Yes",
                             (dialog, which) -> {
                                 changeDigitalSignFlag(false);
                                 Toast toast = Toast.makeText(getApplicationContext(), "Digital sign removed",
@@ -1353,11 +1353,11 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                     input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     input.setHint("Private Key");
                     d.setView(input);
-                    return d.setMessage("Digital Sign")
-                        .setNegativeButton("Turn Off", (dialogInterface, which) -> {
+                    return d.setMessage("Digital Sign?")
+                        .setNegativeButton("No", (dialogInterface, which) -> {
 
                         })
-                        .setPositiveButton("Turn On",
+                        .setPositiveButton("Yes",
                             (dialog, which) -> {
                                 String key = input.getText().toString().trim();
                                 if (key.isEmpty() || key.isBlank() || key.length() < 4) {
