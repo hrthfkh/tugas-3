@@ -1296,14 +1296,14 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                         .create();
             }
             case DIALOG_ENCRYPTION: {
-                Builder d = new Builder(this).setTitle("Encryption Feature");
+                Builder d = new Builder(this).setTitle("Encrypt");
                 if (this.encryptionFlag) {
-                    return d.setMessage("Message will be sent with encryption.")
+                    return d.setMessage("Enter key")
                         .setPositiveButton("Turn Off",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     changeEncryptionFlag(false);
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent as a plain text.",
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent plain",
                                         Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -1314,19 +1314,19 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                     input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     input.setHint("Key");
                     d.setView(input);
-                    return d.setMessage("Message will be sent as a plain text.")
-                        .setPositiveButton("Turn On",
+                    return d.setMessage("Message will be sent plain")
+                        .setPositiveButton("Enter",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     String key = input.getText().toString().trim();
                                     if (key.isEmpty() || key.isBlank() || key.length() < 4) {
-                                        Toast toast = Toast.makeText(getApplicationContext(), "Encryption key is not valid, min 4 characters.",
+                                        Toast toast = Toast.makeText(getApplicationContext(), "Invalid key",
                                             Toast.LENGTH_LONG);
                                         toast.show();
                                         return;
                                     }
                                     changeEncryptionFlag(true, key);
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent with encryption.",
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Message will be sent encrypted",
                                         Toast.LENGTH_LONG);
                                     toast.show();
                                 }
@@ -1334,16 +1334,16 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                 }
             }
             case DIALOG_DIGITAL_SIGN: {
-                Builder d = new Builder(this).setTitle("Digital Signature Feature");
+                Builder d = new Builder(this).setTitle("Digital Sign");
                 if (this.digitalSignFlag) {
-                    return d.setMessage("Turn off digital sign?")
-                        .setNegativeButton("No", (dialogInterface, which) -> {
+                    return d.setMessage("Digital Sign")
+                        .setNegativeButton("Turn Off", (dialogInterface, which) -> {
 
                         })
-                        .setPositiveButton("Yes",
+                        .setPositiveButton("Turn On",
                             (dialog, which) -> {
                                 changeDigitalSignFlag(false);
-                                Toast toast = Toast.makeText(getApplicationContext(), "Digital sign removed.",
+                                Toast toast = Toast.makeText(getApplicationContext(), "Digital sign removed",
                                     Toast.LENGTH_LONG);
                                 toast.show();
                             })
@@ -1353,21 +1353,21 @@ public class MessageCompose extends K9Activity implements OnClickListener,
                     input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                     input.setHint("Private Key");
                     d.setView(input);
-                    return d.setMessage("Add digital sign?")
-                        .setNegativeButton("No", (dialogInterface, which) -> {
+                    return d.setMessage("Digital Sign")
+                        .setNegativeButton("Turn Off", (dialogInterface, which) -> {
 
                         })
-                        .setPositiveButton("Yes",
+                        .setPositiveButton("Turn On",
                             (dialog, which) -> {
                                 String key = input.getText().toString().trim();
                                 if (key.isEmpty() || key.isBlank() || key.length() < 4) {
-                                    Toast toast = Toast.makeText(getApplicationContext(), "Private key is not valid.",
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid private key",
                                         Toast.LENGTH_LONG);
                                     toast.show();
                                     return;
                                 }
                                 changeDigitalSignFlag(true, key);
-                                Toast toast = Toast.makeText(getApplicationContext(), "Digital sign added.",
+                                Toast toast = Toast.makeText(getApplicationContext(), "Digital sign added",
                                     Toast.LENGTH_LONG);
                                 toast.show();
                             }).create();

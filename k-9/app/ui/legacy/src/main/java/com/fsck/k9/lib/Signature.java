@@ -1,6 +1,5 @@
 package com.fsck.k9.lib;
 
-
 import java.math.BigInteger;
 
 public class Signature {

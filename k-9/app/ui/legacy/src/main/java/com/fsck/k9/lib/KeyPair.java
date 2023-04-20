@@ -1,26 +1,25 @@
 package com.fsck.k9.lib;
 
-
 import java.math.BigInteger;
 
 public class KeyPair {
 
-    private final BigInteger Qx;
-    private final BigInteger Qy;
+    private final BigInteger x;
+    private final BigInteger y;
     private final BigInteger d;
 
-    public KeyPair(BigInteger Qx, BigInteger Qy, BigInteger d) {
-        this.Qx = Qx;
-        this.Qy = Qy;
+    public KeyPair(BigInteger x, BigInteger y, BigInteger d) {
+        this.x = x;
+        this.y = y;
         this.d = d;
     }
 
-    public BigInteger getQx() {
-        return Qx;
+    public BigInteger getX() {
+        return x;
     }
 
-    public BigInteger getQy() {
-        return Qy;
+    public BigInteger getY() {
+        return y;
     }
 
     public BigInteger getD() {
@@ -30,8 +29,8 @@ public class KeyPair {
     @Override
     public String toString() {
         return "KeyPair{" +
-                "Qx=" + Qx +
-                ", Qy=" + Qy +
+                "Qx=" + x +
+                ", Qy=" + y +
                 ", d=" + d +
                 '}';
     }
